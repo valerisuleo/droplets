@@ -1,9 +1,12 @@
-import axios from 'axios';
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { useState, useEffect, Fragment } from 'react';
 import { IFormCtrl } from '../../libs/forms/hook/interfaces';
 import { useReactiveForm } from '../../libs/forms/hook/useReactiveForm';
 import ListGroup from '../../libs/list-group/list-group';
-
+import httpService from '../../services/http-service';
+import { environment } from '../../../environments/environment';
+import { ToastContainer, toast } from 'react-toastify';
+import { AppError } from '../../errors/app-error';
 const BuildingForms = () => {
     const schema = {
         title: '',
@@ -13,24 +16,8 @@ const BuildingForms = () => {
         genre: '',
     };
 
-    const genres = [
-        {
-            label: 'Thriller',
-            id: '5b21ca3eeb7f6fbccd471820',
-            value: 'thrillerJackson',
-        },
-        {
-            label: 'Action',
-            id: '5b21ca3eeb7f6fbccd471818',
-            value: 'actionsModern',
-        },
-        { label: 'Comedy', id: '5b21ca3eeb7f6fbccd471814', value: 'comedyLab' },
-    ];
-
-
- 
-
-    const [ctrls, setCtrls] = useState<IFormCtrl[]>([]);
+    // _______________________________HOOKS_______________________________
+    const [ctrls, setControllers] = useState<IFormCtrl[]>([]);
     const [movies, setMovies] = useState([]);
     const [
         formGroup,
@@ -43,39 +30,67 @@ const BuildingForms = () => {
         renderSelect,
     ] = useReactiveForm(schema, doSubmit);
 
-    async function getMovies(): Promise<void> {
-        const promise = axios.get('http://localhost:3000/movies');
-        const response = await promise;
-        setMovies(response.data);
+    useEffect(() => {
+        getMovies();
+        getFormControllers();
+    }, []);
+
+    // ______________________________MOVIES______________________________
+    const genres = [
+        {
+            label: 'Thriller',
+            id: '5b21ca3eeb7f6fbccd471820',
+            value: 'thrillerJackson',
+        },
+        {
+            label: 'Action',
+            id: '5b21ca3eeb7f6fbccd471818',
+            value: 'actionsModern',
+        },
+        {
+            label: 'Comedy',
+            id: '5b21ca3eeb7f6fbccd471814',
+            value: 'comedyLab',
+        },
+    ];
+
+    function getMovies(): void {
+        httpService
+            .getAll(`${environment.config.api.baseUrl}/moviezs`)
+            .then(({ data }) => {
+                setMovies(data);
+            })
+            .catch((error: AppError) => {});
     }
 
-    async function createMovie(): Promise<void> {
-        const genre = genres.find((item) => item.id === formGroup.genre);
-        const payload = { ...formGroup, genre };
-        const promise = axios.post('http://localhost:3000/movies', payload);
-        const response = await promise;
-        const listUpdated = [response.data, ...movies];
-        setMovies(listUpdated);
+    function createMovie(): void {
+        // const genre = genres.find((item) => item.id === formGroup.genre);
+        // const payload = { ...formGroup, genre };
+        // httpService
+        //     .post(`${environment.config.api.baseUrl}/movies`, payload)
+        //     .then(({ data }) => {
+        //         const listUpdated = [data, ...movies];
+        //         setMovies(listUpdated);
+        //     });
     }
 
-    async function getCrls(): Promise<void> {
-        const promise = axios.get('http://localhost:3000/movies-form');
-        const response = await promise;
-        // console.log(response.data);
-        setCtrls(response.data);
+    // ________________________________FORM________________________________
+    function getFormControllers(): void {
+        httpService
+            .getAll(`${environment.config.api.baseUrl}/movies-form`)
+            .then(({ data }) => {
+                setControllers(data);
+            });
     }
 
     function doSubmit(): void {
         createMovie();
     }
 
-    useEffect(() => {
-        getMovies();
-        getCrls();
-    }, []);
-
     return (
         <Fragment>
+            <ToastContainer />
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group my-3">
                     {ctrls.map((controller: IFormCtrl) => (

@@ -2,5 +2,11 @@
 // When building for production, this file is replaced with `environment.prod.ts`.
 
 export const environment = {
-  production: false,
+    name: 'dev',
+    production: false,
+    config: {
+        api: {
+            baseUrl: 'http://localhost:3000',
+        },
+    },
 };
