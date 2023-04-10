@@ -9,6 +9,7 @@ class HttpService {
         this.errorsIntereptor();
     }
 
+    // _________________________________CRUD_________________________________
     public getAll(url: string, queryParams?: string): Promise<AxiosResponse> {
         const result: string = queryParams ? `${url}${queryParams}` : url;
         return axios.get(result);
@@ -34,6 +35,7 @@ class HttpService {
         return axios.delete(`${url}/${resource[key]}`);
     }
 
+    // __________________________HANDLING ERRORS__________________________
     private errorsIntereptor(): void {
         axios.interceptors.response.use(null, (error: AxiosError) => {
             const { status } = error.response || {};

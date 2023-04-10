@@ -64,14 +64,14 @@ const BuildingForms = () => {
     }
 
     function createMovie(): void {
-        // const genre = genres.find((item) => item.id === formGroup.genre);
-        // const payload = { ...formGroup, genre };
-        // httpService
-        //     .post(`${environment.config.api.baseUrl}/movies`, payload)
-        //     .then(({ data }) => {
-        //         const listUpdated = [data, ...movies];
-        //         setMovies(listUpdated);
-        //     });
+        const genre = genres.find((item) => item.id === formGroup.genre);
+        const payload = { ...formGroup, genre };
+        httpService
+            .post(`${environment.config.api.baseUrl}/movies`, payload)
+            .then(({ data }) => {
+                const listUpdated = [data, ...movies];
+                setMovies(listUpdated);
+            });
     }
 
     // ________________________________FORM________________________________
