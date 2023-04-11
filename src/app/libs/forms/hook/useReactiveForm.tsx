@@ -44,8 +44,6 @@ export function useReactiveForm(schema, doSubmit) {
             label
         );
 
-        console.log('mess', messages);
-
         seterrorValidation((prevMessages) => {
             const filteredMessages = prevMessages.filter(
                 (msg) => msg.name !== currentField
