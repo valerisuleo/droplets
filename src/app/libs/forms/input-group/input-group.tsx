@@ -11,7 +11,6 @@ const InputGroup = ({
     validators,
     errorValidation,
 }: IFormInputField) => {
-
     return (
         <Fragment>
             <label htmlFor={name} className="form-label">
@@ -26,7 +25,7 @@ const InputGroup = ({
                 value={value}
                 id={name} // for testing purposes
             />
-            {errorValidation.length ? (
+            {errorValidation && errorValidation.length ? (
                 <Fragment>
                     {errorValidation.map((err: any, i) =>
                         err.msg ? (

@@ -4,6 +4,7 @@ import InputGroup from '../input-group/input-group';
 import Checks from '../checks/checks';
 import Select from '../select/select';
 import { customValidators } from '../validators';
+import { IValidator } from './interfaces';
 
 export function useReactiveForm(schema, doSubmit) {
     const [formGroup, setStateFormGroup] = useState(schema);
@@ -34,7 +35,7 @@ export function useReactiveForm(schema, doSubmit) {
         currentField: string,
         label: string,
         value: string,
-        validators: string[]
+        validators: IValidator[]
     ) => {
         const messages = validationErrors(
             validators,
@@ -42,6 +43,8 @@ export function useReactiveForm(schema, doSubmit) {
             currentField,
             label
         );
+
+        console.log('mess', messages);
 
         seterrorValidation((prevMessages) => {
             const filteredMessages = prevMessages.filter(
@@ -51,25 +54,41 @@ export function useReactiveForm(schema, doSubmit) {
         });
     };
 
-    function validationErrors(validators, value, currentField, label) {
-        const result: any = customValidators.filter((item) =>
-            validators.includes(item.name)
-        );
+    function validationErrors(
+        validators: IValidator[],
+        value: string,
+        currentField: string,
+        label: string
+    ) {
+        const validatorFuncs = {
+            minLengthValidator: (validator, value, label) => {
+                const minLength = validator.options[0].value;
+                return validator.method(value, label, minLength);
+            },
+            requiredValidator: (validator, value, label) => {
+                return validator.method(value, label);
+            },
+            // Add more validators here
+        };
 
-        const messages = result.map((validator) => {
-            const obj = {
-                msg: '',
-                name: currentField,
-            };
-            if (validator.name === 'minLengthValidator') {
-                obj.msg = validator.method(value, label, 5);
-            } else {
-                obj.msg = validator.method(value, label);
-            }
+        const result = validators
+            .map(({ name, options }) => ({
+                ...customValidators.find(
+                    (validator) => validator.name === name
+                ),
+                options,
+            }))
+            .map((validator) => {
+                const validatorFunc = validatorFuncs[validator.name];
+                const msg = validatorFunc(validator, value, label);
 
-            return obj;
-        });
-        return messages;
+                return {
+                    msg,
+                    name: currentField,
+                };
+            });
+
+        return result;
     }
 
     // ___________________________MARKUP___________________________

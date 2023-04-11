@@ -56,7 +56,7 @@ const BuildingForms = () => {
 
     function getMovies(): void {
         httpService
-            .getAll(`${environment.config.api.baseUrl}/moviezs`)
+            .getAll(`${environment.config.api.baseUrl}/movies`)
             .then(({ data }) => {
                 setMovies(data);
             })

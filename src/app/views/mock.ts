@@ -254,3 +254,84 @@ export const users = [
         },
     },
 ];
+
+export const formControllers = [
+    {
+        type: 'select',
+        name: 'genre',
+        label: 'Genre',
+        validators: [],
+        options: [
+            {
+                label: 'Select a genre',
+                id: '',
+                value: 'placeholder',
+            },
+            {
+                label: 'Comedy',
+                id: '5b21ca3eeb7f6fbccd471814',
+                value: 'comedyLab',
+            },
+            {
+                label: 'Action',
+                id: '5b21ca3eeb7f6fbccd471818',
+                value: 'actionsModern',
+            },
+            {
+                label: 'Thriller',
+                id: '5b21ca3eeb7f6fbccd471820',
+                value: 'thrillerJackson',
+            },
+        ],
+        id: '6435bff3d16ecfa79bdcf3db',
+    },
+    {
+        type: 'text',
+        name: 'numberInStock',
+        label: 'Number in stock',
+        validators: [],
+        options: [],
+        id: '6435bff3d16ecfa79bdcf3d9',
+    },
+    {
+        type: 'text',
+        name: 'dailyRentalRate',
+        label: 'Daily Rental Rate',
+        validators: [],
+        options: [],
+        id: '6435bff3d16ecfa79bdcf3da',
+    },
+    {
+        type: 'checkbox',
+        name: 'liked',
+        label: 'Liked',
+        validators: [],
+        options: [],
+        id: '6435bff3d16ecfa79bdcf3dc',
+    },
+    {
+        type: 'text',
+        name: 'title',
+        label: 'Title',
+        validators: [
+            {
+                name: 'requiredValidator',
+                options: [],
+                id: '6435bff3d16ecfa79bdcf3d6',
+            },
+            {
+                name: 'minLengthValidator',
+                options: [
+                    {
+                        key: 'minLength',
+                        value: '3',
+                        id: '6435bff3d16ecfa79bdcf3d8',
+                    },
+                ],
+                id: '6435bff3d16ecfa79bdcf3d7',
+            },
+        ],
+        options: [],
+        id: '6435bff3d16ecfa79bdcf3d5',
+    },
+];
