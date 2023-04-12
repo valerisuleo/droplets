@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useState, useEffect, Fragment } from 'react';
-import { IFormCtrl } from '../../libs/forms/hook/interfaces';
-import { useReactiveForm } from '../../libs/forms/hook/useReactiveForm';
-import { AppError } from '../../errors/app-error';
-import { moviesService } from './service';
+import { IFormCtrl } from '../../../libs/forms/hook/interfaces';
+import { useReactiveForm } from '../../../libs/forms/hook/useReactiveForm';
+import { AppError } from '../../../errors/app-error';
+import { moviesService } from '../services/movies-service';
 import { useNavigate } from 'react-router-dom';
+import { IMovie } from '../interfaces';
 
 const MovieNew = () => {
     const navigateTo = useNavigate();
@@ -53,15 +54,13 @@ const MovieNew = () => {
     function getFormControllers(): void {
         moviesService
             .getAll('/form')
-            .then(({ data }) => {
-                setControllers(data);
-            })
+            .then(({ data }) => setControllers(data))
             .catch((error: AppError) => {});
     }
 
     function createMovie(): void {
         const genre = genres.find((item) => item.id === formGroup.genre);
-        const payload = { ...formGroup, genre };
+        const payload: IMovie = { ...formGroup, genre };
 
         moviesService
             .post(payload)

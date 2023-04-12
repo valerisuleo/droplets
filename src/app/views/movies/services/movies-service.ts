@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { HttpService } from '../../services/http-service';
-import { environment } from '../../../environments/environment';
+import { HttpService } from '../../../services/http-service';
+import { environment } from '../../../../environments/environment';
 
 class MoviesService extends HttpService {
     constructor() {

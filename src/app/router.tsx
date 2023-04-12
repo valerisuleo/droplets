@@ -5,9 +5,9 @@ import Navbar from './navbar';
 import BuildingComponents from './views/building-components';
 import Home from './views/home';
 import ManagingComponentsState from './views/managing-components-state';
-import MoviesIndex from './views/movies/movies-index';
+import MoviesIndex from './views/movies/components/movies-index';
 import GameIndex from './views/games';
-import MovieNew from './views/movies/movie-new';
+import MovieNew from './views/movies/components/movie-new';
 
 const RoutingModule = () => {
     return (
