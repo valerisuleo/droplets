@@ -13,7 +13,7 @@ const RoutingModule = () => {
     return (
         <Fragment>
             <Navbar></Navbar>
-            <main className="container">
+            <main className="container mt-4">
                 <Routes>
                     <Route
                         path="/home"

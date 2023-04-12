@@ -29,7 +29,7 @@ const MoviesIndex = () => {
             <ToastContainer />
             {movies.length ? (
                 <div className="my-3">
-                    <h2>Movies List</h2>
+                    <h2 className="pb-4">Movies List</h2>
                     <ListGroup
                         collection={movies}
                         propKey={'id'}
