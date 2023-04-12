@@ -1,4 +1,26 @@
-# Custom Hook (with reactive form)
+# useReactiveForm
+
+In this doc...
+
+- Benefits;
+- Getting started;
+- Custom hook usage;
+
+
+## Why?
+
+
+1. **Reusability**: The hook abstracts away the logic for handling input changes, validations, and error messages. It can be easily used in different parts of an application with different forms, providing a consistent and predictable experience for users.
+
+2. **Flexibility**: The hook allows developers to define their own form schema, including input types, labels, and validators. It also provides options for rendering different types of inputs (text, checkbox, select), making it suitable for various types of forms.
+
+3. **Efficiency**: The hook uses React's state management to handle form state and error messages. This allows for efficient re-rendering of only the components that have changed, improving overall performance.
+
+4. **Customization**: The hook provides an interface for adding custom validators, allowing developers to define their own validation rules for specific forms or inputs.
+
+5. **Scalability**: As an application grows and new forms are added, the hook can easily be extended to handle new types of inputs or validations.
+
+
 
 
 ## Getting started
@@ -77,7 +99,7 @@
 	```
 
 
-## Custom hook
+## Usage
 
 
 1. touch `useReactiveForm.jsx`
@@ -198,6 +220,9 @@
 	        </div>
 	    </form>
 	```
+
+
+
 
 
 
