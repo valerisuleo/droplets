@@ -3,8 +3,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { IFormCtrl } from '../../libs/forms/hook/interfaces';
 import { useReactiveForm } from '../../libs/forms/hook/useReactiveForm';
 import ListGroup from '../../libs/list-group/list-group';
-import { environment } from '../../../environments/environment';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { AppError } from '../../errors/app-error';
 import { moviesService } from './service';
 const BuildingForms = () => {
