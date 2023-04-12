@@ -5,8 +5,9 @@ import Navbar from './navbar';
 import BuildingComponents from './views/building-components';
 import Home from './views/home';
 import ManagingComponentsState from './views/managing-components-state';
-import BuildingForms from './views/movies';
+import MoviesIndex from './views/movies/movies-index';
 import GameIndex from './views/games';
+import MovieNew from './views/movies/movie-new';
 
 const RoutingModule = () => {
     return (
@@ -19,8 +20,12 @@ const RoutingModule = () => {
                         Component={GameIndex}
                     />
                     <Route
-                        path="/forms"
-                        Component={BuildingForms}
+                        path="/movies/new"
+                        Component={MovieNew}
+                    />
+                    <Route
+                        path="/movies"
+                        Component={MoviesIndex}
                     />
                     <Route
                         path="/managing-components-state"

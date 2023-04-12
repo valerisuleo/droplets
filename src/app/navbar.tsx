@@ -16,7 +16,12 @@ const Navbar = () => {
                         </NavLink>
                     </span>
                     <span className='me-3'>
-                        <NavLink to={'/forms'}>
+                        <NavLink to={'/movies'}>
+                            React Http
+                        </NavLink>
+                    </span>
+                    <span className='me-3'>
+                        <NavLink to={'/movies/new'}>
                             Forms
                         </NavLink>
                     </span>
