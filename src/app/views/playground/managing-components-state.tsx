@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from '../libs/button/button';
-import { IBtn } from '../libs/button/interfaces';
+import Button from '../../libs/button/button';
+import { IBtn } from '../../libs/button/interfaces';
 import { users } from './mock';
 
 const ManagingComponentsState = () => {

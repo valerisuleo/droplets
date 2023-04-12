@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Alert from '../libs/alert/alert';
-import { IAlert } from '../libs/alert/interfaces';
-import Button from '../libs/button/button';
-import { IBtn } from '../libs/button/interfaces';
-import ListGroup from '../libs/list-group/list-group';
+import Alert from '../../libs/alert/alert';
+import { IAlert } from '../../libs/alert/interfaces';
+import Button from '../../libs/button/button';
+import { IBtn } from '../../libs/button/interfaces';
+import ListGroup from '../../libs/list-group/list-group';
 import { IUser, users } from './mock';
 
 const BuildingComponents = () => {
