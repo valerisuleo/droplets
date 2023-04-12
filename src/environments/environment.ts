@@ -6,7 +6,13 @@ export const environment = {
     production: false,
     config: {
         api: {
-            baseUrl: 'http://localhost:3000',
+            express: {
+                baseUrl: 'http://localhost:3000',
+            },
+            rawg: {
+                baseUrl: 'https://api.rawg.io/api',
+                key: '1a7bbe462c10454995e0e957c0c49791',
+            },
         },
     },
 };

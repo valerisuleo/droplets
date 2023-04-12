@@ -1,43 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse, Axios } from 'axios';
 import { AppError } from '../errors/app-error';
 import { NotFoundError } from '../errors/not-found-error';
 import { toast } from 'react-toastify';
 
-class HttpService {
-    constructor() {
+export class HttpService {
+    constructor(private url: string, private http: Axios) {
         this.errorsIntereptor();
     }
 
-    // _________________________________CRUD_________________________________
-    public getAll(url: string, queryParams?: string): Promise<AxiosResponse> {
-        const result: string = queryParams ? `${url}${queryParams}` : url;
-        return axios.get(result);
+    // _________________________________CRUD_____________________________
+    public getAll(queryParams?: string): Promise<AxiosResponse> {
+        const url = queryParams ? `${this.url}${queryParams}` : this.url;
+        return this.http.get(url);
     }
 
-    public post(url: string, payload: any): Promise<AxiosResponse> {
-        return axios.post(url, payload);
+    public post(payload: any): Promise<AxiosResponse> {
+        return this.http.post(this.url, payload);
     }
 
-    public put(
-        url: string,
-        resource: any,
-        key: string
-    ): Promise<AxiosResponse> {
-        return axios.put(`${url}/${resource[key]}`, resource);
+    public put(resource: any, key: string): Promise<AxiosResponse> {
+        return this.http.put(`${this.url}/${resource[key]}`, resource);
     }
 
-    public deleteItem(
-        url: string,
-        resource: any,
-        key: string
-    ): Promise<AxiosResponse> {
-        return axios.delete(`${url}/${resource[key]}`);
+    public deleteItem(resource: any, key: string): Promise<AxiosResponse> {
+        return this.http.delete(`${this.url}/${resource[key]}`);
     }
 
     // __________________________HANDLING ERRORS__________________________
     private errorsIntereptor(): void {
-        axios.interceptors.response.use(null, (error: AxiosError) => {
+        this.http.interceptors.response.use(null, (error: AxiosError) => {
             const { status } = error.response || {};
             const expectedError: boolean = status >= 400 && status < 500;
 
@@ -59,5 +51,3 @@ class HttpService {
         }
     }
 }
-
-export default new HttpService();

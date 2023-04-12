@@ -6,6 +6,7 @@ import BuildingComponents from './views/building-components';
 import Home from './views/home';
 import ManagingComponentsState from './views/managing-components-state';
 import BuildingForms from './views/movies';
+import GameIndex from './views/games';
 
 const RoutingModule = () => {
     return (
@@ -13,6 +14,10 @@ const RoutingModule = () => {
             <Navbar></Navbar>
             <main className="container">
                 <Routes>
+                    <Route
+                        path="/home"
+                        Component={GameIndex}
+                    />
                     <Route
                         path="/forms"
                         Component={BuildingForms}

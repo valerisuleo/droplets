@@ -20,6 +20,11 @@ const Navbar = () => {
                             Forms
                         </NavLink>
                     </span>
+                    <span className='me-3'>
+                        <NavLink to={'/home'}>
+                            home
+                        </NavLink>
+                    </span>
                 </div>
             </div>
         </nav>

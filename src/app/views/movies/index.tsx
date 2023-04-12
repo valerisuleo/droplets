@@ -3,10 +3,10 @@ import { useState, useEffect, Fragment } from 'react';
 import { IFormCtrl } from '../../libs/forms/hook/interfaces';
 import { useReactiveForm } from '../../libs/forms/hook/useReactiveForm';
 import ListGroup from '../../libs/list-group/list-group';
-import httpService from '../../services/http-service';
 import { environment } from '../../../environments/environment';
 import { ToastContainer, toast } from 'react-toastify';
 import { AppError } from '../../errors/app-error';
+import { moviesService } from './service';
 const BuildingForms = () => {
     const schema = {
         title: '',
@@ -55,32 +55,36 @@ const BuildingForms = () => {
     ];
 
     function getMovies(): void {
-        httpService
-            .getAll(`${environment.config.api.baseUrl}/movies`)
+        moviesService
+            .getAll()
             .then(({ data }) => {
                 setMovies(data);
             })
-            .catch((error: AppError) => {});
+            .catch((error: AppError) => {
+                console.log('err', error);
+            });
     }
 
     function createMovie(): void {
         const genre = genres.find((item) => item.id === formGroup.genre);
         const payload = { ...formGroup, genre };
-        httpService
-            .post(`${environment.config.api.baseUrl}/movies`, payload)
+        moviesService
+            .post(payload)
             .then(({ data }) => {
                 const listUpdated = [data, ...movies];
                 setMovies(listUpdated);
-            });
+            })
+            .catch((error: AppError) => {});
     }
 
     // ________________________________FORM________________________________
     function getFormControllers(): void {
-        httpService
-            .getAll(`${environment.config.api.baseUrl}/movies-form`)
+        moviesService
+            .getAll('/form')
             .then(({ data }) => {
                 setControllers(data);
-            });
+            })
+            .catch((error: AppError) => {});
     }
 
     function doSubmit(): void {
@@ -93,41 +97,45 @@ const BuildingForms = () => {
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group my-3">
-                    {ctrls.map((controller: IFormCtrl) => (
-                        <Fragment key={controller.id}>
-                            {controller.type === 'select' ? (
-                                <div className="mb-3">
-                                    {renderSelect(
-                                        controller,
-                                        handleChange,
-                                        formGroup,
-                                        'id',
-                                        'label'
-                                    )}
-                                </div>
-                            ) : null}
-                            {controller.type === 'text' ? (
-                                <div className="mb-3">
-                                    {renderInput(
-                                        controller,
-                                        handleChange,
-                                        handleBlur,
-                                        formGroup,
-                                        errorValidation
-                                    )}
-                                </div>
-                            ) : null}
-                            {controller.type === 'checkbox' ? (
-                                <div className="mb-3">
-                                    {renderCheckbox(
-                                        controller,
-                                        handleChange,
-                                        formGroup
-                                    )}
-                                </div>
-                            ) : null}
-                        </Fragment>
-                    ))}
+                    {ctrls.length ? (
+                        <div>
+                            {ctrls.map((controller: IFormCtrl) => (
+                                <Fragment key={controller.id}>
+                                    {controller.type === 'select' ? (
+                                        <div className="mb-3">
+                                            {renderSelect(
+                                                controller,
+                                                handleChange,
+                                                formGroup,
+                                                'id',
+                                                'label'
+                                            )}
+                                        </div>
+                                    ) : null}
+                                    {controller.type === 'text' ? (
+                                        <div className="mb-3">
+                                            {renderInput(
+                                                controller,
+                                                handleChange,
+                                                handleBlur,
+                                                formGroup,
+                                                errorValidation
+                                            )}
+                                        </div>
+                                    ) : null}
+                                    {controller.type === 'checkbox' ? (
+                                        <div className="mb-3">
+                                            {renderCheckbox(
+                                                controller,
+                                                handleChange,
+                                                formGroup
+                                            )}
+                                        </div>
+                                    ) : null}
+                                </Fragment>
+                            ))}
+                        </div>
+                    ) : null}
                 </div>
                 <button type="submit" className="btn btn-primary mb-3">
                     Submit
@@ -136,18 +144,20 @@ const BuildingForms = () => {
 
             <p>
                 <strong>Form group object: </strong>
-                {JSON.stringify(formGroup)}
+                {/* {JSON.stringify(formGroup)} */}
             </p>
 
-            <div className="my-3">
-                <ListGroup
-                    collection={movies}
-                    propKey={'id'}
-                    propText={'title'}
-                    // eslint-disable-next-line @typescript-eslint/no-empty-function
-                    onEmitEvent={() => {}}
-                />
-            </div>
+            {movies.length ? (
+                <div className="my-3">
+                    <ListGroup
+                        collection={movies}
+                        propKey={'id'}
+                        propText={'title'}
+                        // eslint-disable-next-line @typescript-eslint/no-empty-function
+                        onEmitEvent={() => {}}
+                    />
+                </div>
+            ) : null}
         </Fragment>
     );
 };
