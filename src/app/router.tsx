@@ -16,7 +16,7 @@ const RoutingModule = () => {
             <main className="container mt-4">
                 <Routes>
                     <Route
-                        path="/home"
+                        path="/games"
                         Component={GameIndex}
                     />
                     <Route

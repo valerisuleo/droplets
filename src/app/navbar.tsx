@@ -8,7 +8,7 @@ const navLinks = [
     },
     {
         path: '/managing-components-state',
-        text: 'Managing Components State',
+        text: 'Components State',
     },
     {
         path: '/movies',
@@ -17,6 +17,10 @@ const navLinks = [
     {
         path: '/movies/new',
         text: 'Forms',
+    },
+    {
+        path: '/games',
+        text: 'Games',
     },
 ];
 
