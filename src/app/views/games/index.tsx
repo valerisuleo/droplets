@@ -29,7 +29,7 @@ const GameIndex = () => {
             .catch((error: AppError) => {});
     }
 
-    const cardProps = (item: IGame) => {
+    const cardProps = (item: IGame): ICard => {
         return {
             header: {
                 children: (
@@ -44,19 +44,28 @@ const GameIndex = () => {
                 cardTitle: `${item.name}`,
                 children: null,
             },
+            classes: {
+                equalHeight: true,
+            },
         };
     };
 
     return (
-        <div>
+        <div className="row row-cols-1 row-cols-md-3 g-4">
             {games?.length &&
-                games.map((item: IGame) => (
-                    <Card
-                        key={item.id}
-                        header={cardProps(item).header}
-                        body={cardProps(item).body}
-                    />
-                ))}
+                games.map((item: IGame) => {
+                    const props = cardProps(item);
+                    return (
+                        <div className="col">
+                            <Card
+                                key={item.id}
+                                header={props.header}
+                                body={props.body}
+                                classes={props.classes}
+                            />
+                        </div>
+                    );
+                })}
         </div>
     );
 };

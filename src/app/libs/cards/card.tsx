@@ -1,8 +1,8 @@
 import { ICard } from './ intefaces';
 
-const Card = ({ header, body }: ICard) => {
+const Card = ({ header, body, classes }: ICard) => {
     return (
-        <div className="card">
+        <div className={classes?.equalHeight ? 'card h-100' : 'card'}>
             {header.children && (
                 <div className="card-header">{header.children}</div>
             )}

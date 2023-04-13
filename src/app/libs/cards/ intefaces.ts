@@ -8,4 +8,7 @@ export interface ICard {
         cardTitle?: string;
         children: ReactNode;
     };
+    classes?: {
+        equalHeight: boolean;
+    };
 }
