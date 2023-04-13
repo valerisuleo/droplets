@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('snap', () => {
+describe.only('snap', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {

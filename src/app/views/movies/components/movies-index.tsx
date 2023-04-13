@@ -6,7 +6,6 @@ import { moviesService } from '../services/movies-service';
 import ListGroup from '../../../libs/list-group/list-group';
 import { IMovie } from '../interfaces';
 import Alert from '../../../libs/alert/alert';
-import { IAlert } from '../../../libs/alert/interfaces';
 
 const MoviesIndex = () => {
     const [movies, setMovies] = useState<IMovie[]>([]);
