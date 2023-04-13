@@ -3,14 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 const navLinks = [
     {
-        path: '/building-components',
-        text: 'Building Components',
-    },
-    {
-        path: '/managing-components-state',
-        text: 'Components State',
-    },
-    {
         path: '/movies',
         text: 'React Http',
     },
@@ -21,6 +13,14 @@ const navLinks = [
     {
         path: '/games',
         text: 'Games',
+    },
+    {
+        path: '/building-components',
+        text: 'Building Components',
+    },
+    {
+        path: '/managing-components-state',
+        text: 'Components State',
     },
 ];
 
