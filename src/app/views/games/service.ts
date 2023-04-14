@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 class GameService extends HttpService {
     constructor() {
         super(
-            `${environment.config.api.rawg.baseUrl}/games`,
+            `${environment.config.api.rawg.baseUrl}`,
             axios.create({
                 params: {
                     key: `${environment.config.api.rawg.key}`,
