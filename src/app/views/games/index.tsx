@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Fragment, useEffect, useState } from 'react';
 import { gameService } from './service';
 import { AppError } from '../../errors/app-error';
-import Card from '../../libs/cards/card';
 import { ICard } from '../../libs/cards/ intefaces';
-import Hero from '../../libs/hero/hero';
 import { IBtn } from '../../libs/button/interfaces';
+import Hero from '../../libs/hero/hero';
+import Card from '../../libs/cards/card';
 import Button from '../../libs/button/button';
 
 export interface IGame {
@@ -24,25 +25,23 @@ const GameIndex = () => {
 
     function getGames(): void {
         gameService
-            .getAll('/games')
+            .get('/games')
             .then(({ data }) => {
                 const list = data;
                 console.log('list', list);
                 setGames(data.results);
             })
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
             .catch((error: AppError) => {});
     }
 
     function getGenres(): void {
         gameService
-            .getAll('/genres')
+            .get('/genres')
             .then(({ data }) => {
                 const list = data;
                 console.log('list', list);
                 setGegenres(data.results);
             })
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
             .catch((error: AppError) => {});
     }
 
@@ -67,22 +66,26 @@ const GameIndex = () => {
         };
     };
 
-    const btnProps = {
+    const hadleClick = () => null;
+
+    const btnProps: IBtn = {
         label: 'Shop now',
-        onEmitEvent: null,
+        onEmitEvent: hadleClick,
         type: 'button',
         classes: {
             contextual: 'primary',
             size: 'md',
         },
-    } as IBtn;
+    };
 
     return (
         <Fragment>
-            <Hero variant={'background'} backgroundColor="pink">
-                <h1 className='my-5'>I need an hero!</h1>
-                <Button {...btnProps}></Button>
-            </Hero>
+            <section className="my-4">
+                <Hero variant={'background'} backgroundColor="pink">
+                    <h1 className="my-5">I need an hero!</h1>
+                    <Button {...btnProps}></Button>
+                </Hero>
+            </section>
 
             <div className="row">
                 <aside className="col-md-3"></aside>

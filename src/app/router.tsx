@@ -13,7 +13,7 @@ const RoutingModule = () => {
     return (
         <Fragment>
             <Navbar></Navbar>
-            <main className="container-fluid mt-4">
+            <main className="container-fluid">
                 <Routes>
                     <Route
                         path="/games"

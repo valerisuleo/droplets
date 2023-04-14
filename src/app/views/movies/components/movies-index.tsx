@@ -15,7 +15,7 @@ const MoviesIndex = () => {
 
     function getMovies(): void {
         moviesService
-            .getAll()
+            .get()
             .then((response) => {
                 const movies: IMovie[] = response.data;
                 setMovies(movies);

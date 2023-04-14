@@ -18,7 +18,7 @@ describe('HttpService', () => {
         const responseData = { data: 'test data' };
         mock.onGet(url).reply(200, responseData);
 
-        const response: AxiosResponse = await httpService.getAll();
+        const response: AxiosResponse = await httpService.get();
         expect(response.data).toEqual(responseData);
     });
 
@@ -27,7 +27,7 @@ describe('HttpService', () => {
         const responseData = { data: 'test data' };
         mock.onGet(`${url}${queryParams}`).reply(200, responseData);
 
-        const response: AxiosResponse = await httpService.getAll(queryParams);
+        const response: AxiosResponse = await httpService.get(queryParams);
         expect(response.data).toEqual(responseData);
     });
 
@@ -65,7 +65,7 @@ describe('HttpService', () => {
         mock.onGet(url).reply(404);
 
         try {
-            await httpService.getAll();
+            await httpService.get();
         } catch (error) {
             expect(error).toBeInstanceOf(NotFoundError);
         }
@@ -75,7 +75,7 @@ describe('HttpService', () => {
         mock.onGet(url).reply(500);
 
         try {
-            await httpService.getAll();
+            await httpService.get();
         } catch (error) {
             expect(error).toBeInstanceOf(AppError);
         }

@@ -53,7 +53,7 @@ const MovieNew = () => {
 
     function getFormControllers(): void {
         moviesService
-            .getAll('/form')
+            .get('/form')
             .then(({ data }) => setControllers(data))
             .catch((error: AppError) => {});
     }

@@ -11,7 +11,7 @@ The `HttpService` constructor takes two parameters:
 2. `http`: An instance of the Axios class.
 
 
-- `getAll(queryParams?: string): Promise<AxiosResponse>`
+- `get(queryParams?: string): Promise<AxiosResponse>`
 This method retrieves all resources from the API. It accepts an optional queryParams string, which can be used to filter the results or provide additional options.
 
 - `post(payload: any): Promise<AxiosResponse>`

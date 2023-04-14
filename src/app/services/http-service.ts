@@ -10,7 +10,7 @@ export class HttpService {
     }
 
     // _________________________________CRUD_____________________________
-    public getAll(queryParams?: string): Promise<AxiosResponse> {
+    public get(queryParams?: string): Promise<AxiosResponse> {
         const url = queryParams ? `${this.url}${queryParams}` : this.url;
         return this.http.get(url);
     }
