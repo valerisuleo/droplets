@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useState, useEffect, Fragment } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { AppError } from '../../../errors/app-error';
 import { moviesService } from '../services/movies-service';
 import ListGroup from '../../../libs/list-group/list-group';
 import { IMovie } from '../interfaces';
 import Alert from '../../../libs/alert/alert';
+import { AxiosResponse } from 'axios';
 
 const MoviesIndex = () => {
     const [movies, setMovies] = useState<IMovie[]>([]);
@@ -16,13 +16,11 @@ const MoviesIndex = () => {
     function getMovies(): void {
         moviesService
             .get()
-            .then((response) => {
+            .then((response: AxiosResponse<IMovie[]>) => {
                 const movies: IMovie[] = response.data;
                 setMovies(movies);
             })
-            .catch((error: AppError) => {
-                console.log('err', error);
-            });
+            .catch(() => {});
     }
 
     return (

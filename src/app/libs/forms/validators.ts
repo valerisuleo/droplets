@@ -34,4 +34,4 @@ export const customValidators = [
     { name: 'requiredValidator', method: requiredValidator },
     { name: 'minLengthValidator', method: minLengthValidator },
     { name: 'numberValidator', method: numberValidator },
-];
+] as const;

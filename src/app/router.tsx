@@ -1,42 +1,42 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import { Fragment } from 'react';
+import React, { Fragment, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './navbar';
-import BuildingComponents from './views/playground/building-components';
-import Home from './views/home';
-import ManagingComponentsState from './views/playground/managing-components-state';
-import MoviesIndex from './views/movies/components/movies-index';
-import GameIndex from './views/games';
-import MovieNew from './views/movies/components/movie-new';
+
+const BuildingComponents = lazy(
+    () => import('./views/playground/building-components')
+);
+const Home = lazy(() => import('./views/home'));
+const ManagingComponentsState = lazy(
+    () => import('./views/playground/managing-components-state')
+);
+const MoviesIndex = lazy(
+    () => import('./views/movies/components/movies-index')
+);
+const GameIndex = lazy(() => import('./views/games'));
+const MovieNew = lazy(() => import('./views/movies/components/movie-new'));
 
 const RoutingModule = () => {
     return (
         <Fragment>
             <Navbar></Navbar>
             <main className="container-fluid">
-                <Routes>
-                    <Route
-                        path="/games"
-                        Component={GameIndex}
-                    />
-                    <Route
-                        path="/movies/new"
-                        Component={MovieNew}
-                    />
-                    <Route
-                        path="/movies"
-                        Component={MoviesIndex}
-                    />
-                    <Route
-                        path="/managing-components-state"
-                        Component={ManagingComponentsState}
-                    />
-                    <Route
-                        path="/building-components"
-                        Component={BuildingComponents}
-                    />
-                    <Route path="/" Component={Home} />
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path="/games" Component={GameIndex} />
+                        <Route path="/movies/new" Component={MovieNew} />
+                        <Route path="/movies" Component={MoviesIndex} />
+                        <Route
+                            path="/managing-components-state"
+                            Component={ManagingComponentsState}
+                        />
+                        <Route
+                            path="/building-components"
+                            Component={BuildingComponents}
+                        />
+                        <Route path="/" Component={Home} />
+                    </Routes>
+                </Suspense>
             </main>
         </Fragment>
     );
