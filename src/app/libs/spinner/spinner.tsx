@@ -6,7 +6,7 @@ export interface ISpinner {
     textContent?: string;
 }
 
-export function Spinner({ color, textContent }: ISpinner) {
+const Spinner = ({ color, textContent }: ISpinner) => {
     return (
         <div
             data-testid="spinner-container"
@@ -17,6 +17,6 @@ export function Spinner({ color, textContent }: ISpinner) {
             </div>
         </div>
     );
-}
+};
 
 export default Spinner;

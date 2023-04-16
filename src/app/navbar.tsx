@@ -15,11 +15,11 @@ const navLinks = [
         text: 'Games',
     },
     {
-        path: '/building-components',
+        path: '/playground/building-components',
         text: 'Building Components',
     },
     {
-        path: '/managing-components-state',
+        path: 'playground/managing-components-state',
         text: 'Components State',
     },
 ];

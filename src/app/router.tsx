@@ -4,18 +4,10 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './navbar';
 import Spinner from './libs/spinner/spinner';
 
-const BuildingComponents = lazy(
-    () => import('./views/playground/building-components')
-);
 const Home = lazy(() => import('./views/home'));
-const ManagingComponentsState = lazy(
-    () => import('./views/playground/managing-components-state')
-);
-const MoviesIndex = lazy(
-    () => import('./views/movies/components/movies-index')
-);
-const GameIndex = lazy(() => import('./views/games'));
-const MovieNew = lazy(() => import('./views/movies/components/movie-new'));
+const GamesRouter = lazy(() => import('./views/games/router'));
+const MoviesRouter = lazy(() => import('./views/movies/routes'));
+const PlaygroundRouter = lazy(() => import('./views/playground/routes'));
 
 const RoutingModule = () => {
     return (
@@ -24,18 +16,14 @@ const RoutingModule = () => {
             <main className="container-fluid">
                 <Suspense fallback={<Spinner color={'primary'} />}>
                     <Routes>
-                        <Route path="/games" Component={GameIndex} />
-                        <Route path="/movies/new" Component={MovieNew} />
-                        <Route path="/movies" Component={MoviesIndex} />
+                        <Route path="/games/*" element={<GamesRouter />} />
+                        <Route path="/movies/*" element={<MoviesRouter />} />
                         <Route
-                            path="/managing-components-state"
-                            Component={ManagingComponentsState}
+                            path="/playground/*"
+                            element={<PlaygroundRouter />}
                         />
-                        <Route
-                            path="/building-components"
-                            Component={BuildingComponents}
-                        />
-                        <Route path="/" Component={Home} />
+
+                        <Route path="/" element={<Home />} />
                     </Routes>
                 </Suspense>
             </main>

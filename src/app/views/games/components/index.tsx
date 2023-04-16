@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Fragment, useEffect, useState } from 'react';
-import { gameService } from './service';
-import { AppError } from '../../errors/app-error';
-import { ICard } from '../../libs/cards/ intefaces';
-import { IBtn } from '../../libs/button/interfaces';
-import Hero from '../../libs/hero/hero';
-import Card from '../../libs/cards/card';
-import Button from '../../libs/button/button';
+import { gameService } from '../service';
+import { AppError } from '../../../errors/app-error';
+import { ICard } from '../../../libs/cards/ intefaces';
+import { IBtn } from '../../../libs/button/interfaces';
+import Hero from '../../../libs/hero/hero';
+import Card from '../../../libs/cards/card';
+import Button from '../../../libs/button/button';
 
 export interface IGame {
     id: number;
@@ -19,7 +19,7 @@ const GameIndex = () => {
     const [genres, setGegenres] = useState([]);
 
     useEffect(() => {
-        getGames();
+        // getGames();
         // getGenres();
     }, []);
 
