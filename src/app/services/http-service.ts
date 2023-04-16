@@ -23,7 +23,7 @@ export class HttpService {
         return this.http.put(`${this.url}/${resource[key]}`, resource);
     }
 
-    public deleteItem(resource: any, key: string): Promise<AxiosResponse> {
+    public delete(resource: any, key: string): Promise<AxiosResponse> {
         return this.http.delete(`${this.url}/${resource[key]}`);
     }
 
@@ -34,6 +34,7 @@ export class HttpService {
             const expectedError: boolean = status >= 400 && status < 500;
 
             if (!expectedError) {
+                // This is a good place for Sentry.io
                 toast.error('Oops...unexpected error!');
                 return Promise.reject(new AppError(error));
             } else {

@@ -19,7 +19,7 @@ const GameIndex = () => {
     const [genres, setGegenres] = useState([]);
 
     useEffect(() => {
-        // getGames();
+        getGames();
         // getGenres();
     }, []);
 
@@ -95,9 +95,8 @@ const GameIndex = () => {
                             games.map((item: IGame) => {
                                 const props = cardProps(item);
                                 return (
-                                    <div className="col">
+                                    <div className="col" key={item.id}>
                                         <Card
-                                            key={item.id}
                                             header={props.header}
                                             body={props.body}
                                             classes={props.classes}

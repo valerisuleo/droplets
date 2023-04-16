@@ -2,6 +2,7 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './navbar';
+import Spinner from './libs/spinner/spinner';
 
 const BuildingComponents = lazy(
     () => import('./views/playground/building-components')
@@ -21,7 +22,7 @@ const RoutingModule = () => {
         <Fragment>
             <Navbar></Navbar>
             <main className="container-fluid">
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Spinner color={'primary'} />}>
                     <Routes>
                         <Route path="/games" Component={GameIndex} />
                         <Route path="/movies/new" Component={MovieNew} />
