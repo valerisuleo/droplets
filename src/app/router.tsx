@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { Fragment, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './navbar';
 import Spinner from './libs/spinner/spinner';
 
-const Home = lazy(() => import('./views/home'));
+const Home = lazy(() => import('./views/home/home'));
 const GamesRouter = lazy(() => import('./views/games/router'));
 const MoviesRouter = lazy(() => import('./views/movies/routes'));
 const PlaygroundRouter = lazy(() => import('./views/playground/routes'));

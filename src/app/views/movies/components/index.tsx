@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useState, useEffect, Fragment } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { moviesService } from '../services/movies-service';
+import { moviesService } from '../services/movies';
 import ListGroup from '../../../libs/list-group/list-group';
 import { IMovie } from '../interfaces';
 import Alert from '../../../libs/alert/alert';
@@ -17,8 +17,7 @@ const MoviesIndex = () => {
         moviesService
             .get()
             .then((response: AxiosResponse<IMovie[]>) => {
-                const movies: IMovie[] = response.data;
-                setMovies(movies);
+                setMovies(response.data);
             })
             .catch(() => {});
     }

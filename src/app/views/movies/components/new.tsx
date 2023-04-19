@@ -3,7 +3,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { IFormCtrl } from '../../../libs/forms/hook/interfaces';
 import { useReactiveForm } from '../../../libs/forms/hook/useReactiveForm';
 import { AppError } from '../../../errors/app-error';
-import { moviesService } from '../services/movies-service';
+import { moviesService } from '../services/movies';
 import { useNavigate } from 'react-router-dom';
 import { IMovie } from '../interfaces';
 
