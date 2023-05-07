@@ -6,7 +6,7 @@ import Select from '../select/select';
 import { customValidators } from '../validators';
 import { IValidator } from './interfaces';
 
-export function useReactiveForm(schema, doSubmit) {
+export function useReactiveForm(schema, doSubmit?, doChange?) {
     const [formGroup, setStateFormGroup] = useState(schema);
     const [errorValidation, seterrorValidation] = useState([]);
 
@@ -17,12 +17,11 @@ export function useReactiveForm(schema, doSubmit) {
 
         if (current.type === 'checkbox') {
             clone[current.name] = current.checked;
-        } else if (current.type === 'select-one') {
-            clone[current.name] = current.value;
         } else {
             clone[current.name] = current.value;
         }
 
+        doChange(current);
         setStateFormGroup(clone);
     };
 
@@ -43,7 +42,6 @@ export function useReactiveForm(schema, doSubmit) {
             currentField,
             label
         );
-
         seterrorValidation((prevMessages) => {
             const filteredMessages = prevMessages.filter(
                 (msg) => msg.name !== currentField
@@ -99,7 +97,7 @@ export function useReactiveForm(schema, doSubmit) {
     ) {
         const { label, name, validators, type } = controller;
 
-        // console.log(controller);
+        console.log(controller);
 
         return (
             <InputGroup
@@ -118,6 +116,7 @@ export function useReactiveForm(schema, doSubmit) {
     }
     function renderCheckbox(controller, handleChange, formGroup) {
         const { label, name, validators, type } = controller;
+
         return (
             <Checks
                 label={label}

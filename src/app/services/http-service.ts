@@ -38,6 +38,7 @@ export class HttpService {
                 toast.error('Oops...unexpected error!');
                 return Promise.reject(new AppError(error));
             } else {
+                toast.error('error!');
                 throw this.handleError(error);
             }
         });

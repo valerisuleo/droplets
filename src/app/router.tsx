@@ -7,6 +7,7 @@ const Home = lazy(() => import('./views/home/home'));
 const GamesRouter = lazy(() => import('./views/games/router'));
 const MoviesRouter = lazy(() => import('./views/movies/routes'));
 const PlaygroundRouter = lazy(() => import('./views/playground/routes'));
+const PostsRouter = lazy(() => import('./views/posts/routes'));
 
 const RoutingModule = () => {
     return (
@@ -22,6 +23,7 @@ const RoutingModule = () => {
                             element={<PlaygroundRouter />}
                         />
 
+                        <Route path="/posts/*" element={<PostsRouter />} />
                         <Route path="/" element={<Home />} />
                     </Routes>
                 </Suspense>

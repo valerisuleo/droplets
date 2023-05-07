@@ -1,8 +1,8 @@
 import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-const MoviesIndex = lazy(() => import('./components'));
-const MovieNew = lazy(() => import('./components/'));
+const MoviesIndex = lazy(() => import('./components/index'));
+const MovieNew = lazy(() => import('./components/new'));
 
 const routes = () => {
     return (

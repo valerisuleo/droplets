@@ -13,6 +13,10 @@ export const environment = {
                 baseUrl: 'https://api.rawg.io/api',
                 key: '1a7bbe462c10454995e0e957c0c49791',
             },
+            jsonplaceholder: {
+                baseUrl: 'https://jsonplaceholder.typicode.com',
+                key: '',
+            },
         },
     },
 };
