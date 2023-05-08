@@ -11,7 +11,7 @@ const useFetchData = (queryKey: QueryKey, queryParams?: string) => {
     return useQuery<any[], Error>({
         queryKey,
         queryFn: getAll,
-        staleTime: 5 * 1000, // 5sec
+        // staleTime: 5 * 1000, // 5sec
         retry: 2
     });
 };
