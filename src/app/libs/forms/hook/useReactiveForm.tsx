@@ -21,13 +21,18 @@ export function useReactiveForm(schema, doSubmit?, doChange?) {
             clone[current.name] = current.value;
         }
 
-        doChange(current);
+        if (doChange) {
+            console.log('coddio');
+
+            doChange(current);
+        }
         setStateFormGroup(clone);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         doSubmit();
+        setStateFormGroup(schema); // reset formGroup state to initial schema state
     };
 
     const handleBlur = (
@@ -97,7 +102,15 @@ export function useReactiveForm(schema, doSubmit?, doChange?) {
     ) {
         const { label, name, validators, type } = controller;
 
-        console.log(controller);
+        console.log('controller', controller);
+
+        let errorValidationFiltered = [];
+
+        if (Array.isArray(errorValidation)) {
+            errorValidationFiltered = errorValidation.filter(
+                (item) => item.name === name
+            );
+        }
 
         return (
             <InputGroup
@@ -108,12 +121,11 @@ export function useReactiveForm(schema, doSubmit?, doChange?) {
                 onBlur={handleBlur}
                 type={type}
                 validators={validators}
-                errorValidation={errorValidation.filter(
-                    (item) => item.name === name
-                )}
+                errorValidation={errorValidationFiltered}
             />
         );
     }
+
     function renderCheckbox(controller, handleChange, formGroup) {
         const { label, name, validators, type } = controller;
 

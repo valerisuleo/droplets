@@ -15,14 +15,14 @@
 
 // const PostsIndex = () => {
 
-//     const getTodos = () =>
+//     const getPosts = () =>
 //         postsService
 //             .get('/todos')
 //             .then((res: AxiosResponse<IPosts[]>) => res.data);
 
 //     const { data: todos, error, isLoading } = useQuery<IPosts[], Error>({
 //         queryKey: ['todos'],
-//         queryFn: getTodos,
+//         queryFn: getPosts,
 //     });
 
 //     if (isLoading) {

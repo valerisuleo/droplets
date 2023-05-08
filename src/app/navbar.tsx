@@ -31,6 +31,10 @@ const navLinks = [
                 path: '/posts/infinite',
                 text: 'Infinite Queries',
             },
+            {
+                path: '/posts/mutation',
+                text: 'Mutations',
+            },
         ],
     },
     {
